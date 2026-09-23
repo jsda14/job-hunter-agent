@@ -13,3 +13,14 @@ htmlcov/
 # IDEs
 .vscode/
 .idea/
+
+# Base de datos local y datos de ejecución
+data/*.db
+*.db
+*.sqlite3
+
+# Entornos virtuales y caches
+venv/
+.venv/
+__pycache__/
+.pytest_cache/
