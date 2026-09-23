@@ -6,10 +6,12 @@
 ---
 
 ## 1. Métricas del Harness
-* **Tests Unitarios:** 13 passed / 13 total (100% verde)
-* **Tests de Integración:** 0 (Pendiente primer live harness)
+* **Tests Unitarios:** 19 passed / 19 total (100% verde)
+* **Tests de Integración:** 2 passed / 2 total (100% verde contra internet)
+* **Tests Totales:** 21 passed / 21 total (100% verde)
 * **Framework:** Pytest 9+ con pytest-asyncio
-* **Tiempo de ejecución suite:** ~1.3s
+* **Tiempo de ejecución suite unitaria:** ~2.5s
+* **Tiempo de ejecución suite integración:** ~4.0s
 
 ---
 
@@ -23,13 +25,13 @@
 | `SPEC-004` | Tailored Pitch Generator Port & Adapter | `Implemented` | `tests/unit/test_pitch_generator.py` (2 tests) | Mapeo heurístico a proyectos reales |
 | `SPEC-005` | Job Hunter Orchestrator Use Case | `Implemented` | `tests/unit/test_hunt_jobs_usecase.py` (2 tests) | Orquestación resiliente ante fallas |
 | `SPEC-006` | Console Notifier Adapter & CLI Runner | `Implemented` | `tests/unit/test_console_notifier.py` (2 tests) | CLI entrypoint funcional en `main.py` |
+| `SPEC-007` | Lever Integration Harness & Live Network Test | `Implemented` | `tests/integration/test_lever_live.py` (2 tests) | Harness real contra internet con aislamiento por markers |
+| `SPEC-008` | Greenhouse Harvester Adapter | `Implemented` | `tests/unit/test_greenhouse_harvester.py` (6 tests) | Normalización HTML, ISO UTC y fallbacks |
 
 ---
 
 ## 3. Backlog de Especificaciones Pendientes (Roadmap Inmediato)
 
-- [ ] **SPEC-007 (Integration Harness):** Prueba de integración en vivo contra un slug real de Lever para verificar el contrato contra internet.
-- [ ] **SPEC-008 (Greenhouse Harvester Adapter):** Segundo adaptador de recolección para soportar empresas que usan Greenhouse (ej. Nubank y scale-ups regionales).
 - [ ] **SPEC-009 (Semantic LLM Evaluator):** Evaluador avanzado usando Claude / Gemini para análisis semántico fino cuando la regla heurística no baste.
 
 ---
