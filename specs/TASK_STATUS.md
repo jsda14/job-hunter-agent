@@ -6,11 +6,11 @@
 ---
 
 ## 1. Métricas del Harness
-* **Tests Unitarios:** 31 passed / 31 total (100% verde)
+* **Tests Unitarios:** 35 passed / 35 total (100% verde)
 * **Tests de Integración:** 2 passed / 2 total (100% verde contra internet)
-* **Tests Totales:** 33 passed / 33 total (100% verde)
+* **Tests Totales:** 37 passed / 37 total (100% verde)
 * **Framework:** Pytest 9+ con pytest-asyncio
-* **Tiempo de ejecución suite unitaria:** ~3.2s
+* **Tiempo de ejecución suite unitaria:** ~3.4s
 * **Tiempo de ejecución suite integración:** ~4.0s
 
 ---
@@ -29,15 +29,17 @@
 | `SPEC-008` | Greenhouse Harvester Adapter | `Implemented` | `tests/unit/test_greenhouse_harvester.py` (6 tests) | Normalización HTML, ISO UTC y fallbacks |
 | `SPEC-009` | Composite Harvester Adapter & Multi-Platform Dispatcher | `Implemented` | `tests/unit/test_composite_harvester.py` (6 tests) | Despacho heterogéneo, aislamiento de fallos y agregación |
 | `SPEC-010` | Targets Loader & End-to-End Orchestration | `Implemented` | `tests/unit/test_target_loader.py` (6 tests) | Externalización de configuración en `companies.json` y pipeline CLI |
+| `SPEC-011` | SQLite Job Repository & Deduplication | `Implemented` | `tests/unit/test_sqlite_repository.py` (4 tests) | Persistencia local SQLite, deduplicación e idempotencia |
 
 ---
 
 ## 3. Backlog de Especificaciones Pendientes (Roadmap Inmediato)
 
-- [ ] **SPEC-011 (Semantic LLM Evaluator):** Evaluador avanzado usando Claude / Gemini para análisis semántico fino cuando la regla heurística no baste.
-- [ ] **SPEC-012 (Ashby Harvester Adapter):** Tercer adaptador de recolección para soportar empresas que usan Ashby ATS.
+- [ ] **SPEC-012 (Semantic LLM Evaluator):** Evaluador avanzado usando Claude / Gemini para análisis semántico fino cuando la regla heurística no baste.
+- [ ] **SPEC-013 (Ashby Harvester Adapter):** Tercer adaptador de recolección para soportar empresas que usan Ashby ATS.
 
 ---
 
 ## 4. Deuda Técnica y Restricciones Conocidas
 * Resuelto en `SPEC-010`: Slugs de empresas externalizados en `companies.json` con validación tipada en `JsonTargetLoaderAdapter`.
+* Resuelto en `SPEC-011`: Deduplicación persistente mediante SQLite nativo (`data/job_hunter.db`), evitando reprocesar y renotificar vacantes vistas.

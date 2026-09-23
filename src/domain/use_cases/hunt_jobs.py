@@ -1,9 +1,10 @@
-from typing import Any, List, Tuple, Union
+from typing import Any, List, Optional, Tuple, Union
 
 from src.domain.models.job import JobEvaluation, JobRaw
 from src.domain.ports.evaluator import JobEvaluatorPort
 from src.domain.ports.harvester import CompanyTarget, HarvesterConnectionError, JobHarvesterPort
 from src.domain.ports.pitch_generator import PitchGeneratorPort
+from src.domain.ports.repository import JobRepositoryPort
 
 
 class JobHunterUseCase:
@@ -14,10 +15,12 @@ class JobHunterUseCase:
         harvester: Any,
         evaluator: JobEvaluatorPort,
         pitch_generator: PitchGeneratorPort,
+        repository: Optional[JobRepositoryPort] = None,
     ) -> None:
         self.harvester = harvester
         self.evaluator = evaluator
         self.pitch_generator = pitch_generator
+        self.repository = repository
 
     async def execute(
         self, targets: Union[List[str], List[CompanyTarget]]
@@ -57,11 +60,19 @@ class JobHunterUseCase:
                 except HarvesterConnectionError:
                     continue
 
+        # RN-05: Filtrado de vacantes previamente no vistas si hay repositorio
+        if self.repository is not None:
+            collected_jobs = await self.repository.filter_unseen(collected_jobs)
+
         for job in collected_jobs:
             evaluation = await self.evaluator.evaluate(job)
             if evaluation.is_actionable:
                 pitch = await self.pitch_generator.generate_pitch(job, evaluation)
                 evaluation.tailored_pitch = pitch
                 actionable_results.append((job, evaluation))
+
+            # RN-05: Registrar vacante procesada en el repositorio
+            if self.repository is not None:
+                await self.repository.save_job(job, evaluation)
 
         return actionable_results
