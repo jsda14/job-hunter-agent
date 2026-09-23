@@ -8,6 +8,7 @@ from src.adapters.harvesters.greenhouse import GreenhouseHarvesterAdapter
 from src.adapters.harvesters.lever import LeverHarvesterAdapter
 from src.adapters.loaders.json_targets import JsonTargetLoaderAdapter
 from src.adapters.notifiers.console import ConsoleNotifierAdapter
+from src.adapters.repositories.sqlite import SQLiteJobRepositoryAdapter
 from src.domain.models.job import SourcePlatform
 from src.domain.use_cases.hunt_jobs import JobHunterUseCase
 
@@ -22,12 +23,14 @@ async def main() -> None:
     pitch_generator = RuleBasedPitchGeneratorAdapter()
     notifier = ConsoleNotifierAdapter()
     target_loader = JsonTargetLoaderAdapter()
+    repository = SQLiteJobRepositoryAdapter("data/job_hunter.db")
 
-    # 2. Use case orchestration
+    # 2. Use case orchestration with deduplication
     use_case = JobHunterUseCase(
         harvester=composite_harvester,
         evaluator=evaluator,
         pitch_generator=pitch_generator,
+        repository=repository,
     )
 
     # 3. Load target companies from configuration
