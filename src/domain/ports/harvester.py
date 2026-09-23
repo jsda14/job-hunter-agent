@@ -1,12 +1,26 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Optional
 
-from src.domain.models.job import JobRaw
+from pydantic import BaseModel, Field
+
+from src.domain.models.job import JobRaw, SourcePlatform
 
 
 class HarvesterConnectionError(Exception):
     """Exception raised when an external harvesting service fails or cannot be reached."""
     pass
+
+
+class UnsupportedPlatformError(Exception):
+    """Exception raised when harvesting is requested for an unregistered platform."""
+    pass
+
+
+class CompanyTarget(BaseModel):
+    """Structured harvesting target associating a company slug with its ATS platform."""
+    company_slug: str = Field(min_length=1, description="Company slug or identifier in the ATS")
+    platform: SourcePlatform = Field(description="ATS platform hosting the job posting")
+    name: Optional[str] = Field(default=None, description="Human-readable company name")
 
 
 class JobHarvesterPort(ABC):
