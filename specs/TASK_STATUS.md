@@ -6,11 +6,11 @@
 ---
 
 ## 1. Métricas del Harness
-* **Tests Unitarios:** 35 passed / 35 total (100% verde)
+* **Tests Unitarios:** 47 passed / 47 total (100% verde)
 * **Tests de Integración:** 2 passed / 2 total (100% verde contra internet)
-* **Tests Totales:** 37 passed / 37 total (100% verde)
+* **Tests Totales:** 49 passed / 49 total (100% verde)
 * **Framework:** Pytest 9+ con pytest-asyncio
-* **Tiempo de ejecución suite unitaria:** ~3.4s
+* **Tiempo de ejecución suite unitaria:** ~4.0s
 * **Tiempo de ejecución suite integración:** ~4.0s
 
 ---
@@ -30,13 +30,14 @@
 | `SPEC-009` | Composite Harvester Adapter & Multi-Platform Dispatcher | `Implemented` | `tests/unit/test_composite_harvester.py` (6 tests) | Despacho heterogéneo, aislamiento de fallos y agregación |
 | `SPEC-010` | Targets Loader & End-to-End Orchestration | `Implemented` | `tests/unit/test_target_loader.py` (6 tests) | Externalización de configuración en `companies.json` y pipeline CLI |
 | `SPEC-011` | SQLite Job Repository & Deduplication | `Implemented` | `tests/unit/test_sqlite_repository.py` (4 tests) | Persistencia local SQLite, deduplicación e idempotencia |
+| `SPEC-012` | Telegram Notifier Adapter | `Implemented` | `tests/unit/test_telegram_notifier.py` (12 tests) | Notificaciones push móviles en HTML vía Bot API oficial con httpx |
 
 ---
 
 ## 3. Backlog de Especificaciones Pendientes (Roadmap Inmediato)
 
-- [ ] **SPEC-012 (Semantic LLM Evaluator):** Evaluador avanzado usando Claude / Gemini para análisis semántico fino cuando la regla heurística no baste.
-- [ ] **SPEC-013 (Ashby Harvester Adapter):** Tercer adaptador de recolección para soportar empresas que usan Ashby ATS.
+- [ ] **SPEC-013 (Semantic LLM Evaluator):** Evaluador avanzado usando Claude / Gemini para análisis semántico fino cuando la regla heurística no baste.
+- [ ] **SPEC-014 (Ashby Harvester Adapter):** Tercer adaptador de recolección para soportar empresas que usan Ashby ATS.
 
 ---
 
