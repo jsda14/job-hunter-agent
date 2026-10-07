@@ -18,20 +18,5 @@
     "company_slug": "nubank",
     "platform": "greenhouse",
     "name": "Nubank"
-  },
-  {
-    "company_slug": "adyen",
-    "platform": "greenhouse",
-    "name": "Adyen"
-  },
-  {
-    "company_slug": "stripe",
-    "platform": "greenhouse",
-    "name": "Stripe"
-  },
-  {
-    "company_slug": "getnet",
-    "platform": "greenhouse",
-    "name": "Getnet"
   }
 ]

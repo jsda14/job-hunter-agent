@@ -30,7 +30,9 @@ Reglas estrictas:
 - is_actionable = true SOLO si fit_score >= 70 Y requires_spoken_english = false Y no hay red flags excluyentes.
 - Si el rol es junior/trainee/intern: fit_score <= 30, is_actionable = false.
 - Si requiere presencial fuera de Bogotá: is_actionable = false, agrega red flag.
-- Si requiere inglés hablado fluido: requires_spoken_english = true, is_actionable = false."""
+- Si requiere inglés hablado fluido: requires_spoken_english = true, is_actionable = false.
+- Si la descripción está escrita ÚNICAMENTE en inglés (no hay nada en español): asumir que el rol exige inglés hablado fluido en reuniones, por lo tanto requires_spoken_english = true, is_actionable = false, agrega red flag "Vacante publicada solo en inglés — implica reuniones en inglés".
+- Si la empresa es multinacional conocida por operar en inglés (Stripe, Adyen, etc.): aplicar la misma regla anterior."""
 
 _DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
 _MODEL = "deepseek-chat"
