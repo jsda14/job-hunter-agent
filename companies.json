@@ -18,5 +18,20 @@
     "company_slug": "nubank",
     "platform": "greenhouse",
     "name": "Nubank"
+  },
+  {
+    "company_slug": "xepelin",
+    "platform": "lever",
+    "name": "Xepelin"
+  },
+  {
+    "company_slug": "dlocal",
+    "platform": "lever",
+    "name": "dLocal"
+  },
+  {
+    "company_slug": "fintual",
+    "platform": "lever",
+    "name": "Fintual"
   }
 ]
