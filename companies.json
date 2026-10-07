@@ -5,8 +5,33 @@
     "name": "Kavak"
   },
   {
+    "company_slug": "yuno",
+    "platform": "lever",
+    "name": "Yuno"
+  },
+  {
+    "company_slug": "lahaus",
+    "platform": "lever",
+    "name": "La Haus"
+  },
+  {
     "company_slug": "nubank",
     "platform": "greenhouse",
     "name": "Nubank"
+  },
+  {
+    "company_slug": "adyen",
+    "platform": "greenhouse",
+    "name": "Adyen"
+  },
+  {
+    "company_slug": "stripe",
+    "platform": "greenhouse",
+    "name": "Stripe"
+  },
+  {
+    "company_slug": "getnet",
+    "platform": "greenhouse",
+    "name": "Getnet"
   }
 ]
