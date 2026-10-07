@@ -23,8 +23,17 @@ jobs:
       - name: Instalar dependencias
         run: pip install -r requirements.txt
 
+      - name: Restaurar base de datos de vacantes vistas
+        uses: actions/cache@v4
+        with:
+          path: data/job_hunter.db
+          key: job-hunter-db-${{ github.run_id }}
+          restore-keys: |
+            job-hunter-db-
+
       - name: Ejecutar prospección
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: python main.py
