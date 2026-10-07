@@ -3,6 +3,11 @@ from abc import ABC, abstractmethod
 from src.domain.models.job import JobEvaluation, JobRaw
 
 
+class LLMEvaluatorError(Exception):
+    """Exception raised when the LLM evaluator fails to connect or parse its response."""
+    pass
+
+
 class JobEvaluatorPort(ABC):
     """Port defining the interface for evaluating job postings against candidate profile."""
 

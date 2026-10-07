@@ -3,8 +3,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from src.adapters.evaluators.llm_deepseek import DeepSeekEvaluatorAdapter
 from src.adapters.evaluators.pitch_generator import RuleBasedPitchGeneratorAdapter
-from src.adapters.evaluators.rule_based import RuleBasedEvaluatorAdapter
 from src.adapters.harvesters.composite import CompositeHarvesterAdapter
 from src.adapters.harvesters.greenhouse import GreenhouseHarvesterAdapter
 from src.adapters.harvesters.lever import LeverHarvesterAdapter
@@ -23,7 +23,7 @@ async def main() -> None:
         SourcePlatform.LEVER: LeverHarvesterAdapter(),
         SourcePlatform.GREENHOUSE: GreenhouseHarvesterAdapter(),
     })
-    evaluator = RuleBasedEvaluatorAdapter()
+    evaluator = DeepSeekEvaluatorAdapter()
     pitch_generator = RuleBasedPitchGeneratorAdapter()
     notifier = TelegramNotifierAdapter()
     target_loader = JsonTargetLoaderAdapter()
