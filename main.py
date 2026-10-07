@@ -1,16 +1,20 @@
 import asyncio
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 from src.adapters.evaluators.pitch_generator import RuleBasedPitchGeneratorAdapter
 from src.adapters.evaluators.rule_based import RuleBasedEvaluatorAdapter
 from src.adapters.harvesters.composite import CompositeHarvesterAdapter
 from src.adapters.harvesters.greenhouse import GreenhouseHarvesterAdapter
 from src.adapters.harvesters.lever import LeverHarvesterAdapter
 from src.adapters.loaders.json_targets import JsonTargetLoaderAdapter
-from src.adapters.notifiers.console import ConsoleNotifierAdapter
+from src.adapters.notifiers.telegram import TelegramNotifierAdapter
 from src.adapters.repositories.sqlite import SQLiteJobRepositoryAdapter
 from src.domain.models.job import SourcePlatform
 from src.domain.use_cases.hunt_jobs import JobHunterUseCase
+
+load_dotenv()
 
 
 async def main() -> None:
@@ -21,7 +25,7 @@ async def main() -> None:
     })
     evaluator = RuleBasedEvaluatorAdapter()
     pitch_generator = RuleBasedPitchGeneratorAdapter()
-    notifier = ConsoleNotifierAdapter()
+    notifier = TelegramNotifierAdapter()
     target_loader = JsonTargetLoaderAdapter()
     repository = SQLiteJobRepositoryAdapter("data/job_hunter.db")
 
